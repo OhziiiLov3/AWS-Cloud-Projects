@@ -43,7 +43,7 @@ aws iam add-user-to-group --group-name AdminGroup --user-name YourUserName
 
 
 
-# **Step-by-Step Guide: IAM Groups & Least Privilege Access on AWS****Implement Least Privilege Access on AWS**
+# **Step-by-Step Guide: IAM Groups & Least Privilege Access on AWS**
 
 ### Why?
 Implementing least privilege access ensures that users have only the permissions necessary to perform their tasks. This improves security and reduces the risk of accidental or malicious modifications to your AWS resources.
