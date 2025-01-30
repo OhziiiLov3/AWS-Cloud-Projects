@@ -35,16 +35,16 @@ This method involves setting up an IAM user with administrator access and enabli
 3. Copy and download the **access key ID** and **secret access key** (for CLI use).  
 
 🎉 **User Created!** 🎉  
-Step 4: Enable Multi-Factor Authentication (MFA)
-Go to IAM → Users → [Your IAM User].
-Click on the Security credentials tab.
-Scroll down to Assigned MFA device and click Manage.
-Select Virtual MFA device (recommended) and click Continue.
-Open the AWS MFA App (e.g., Google Authenticator, Authy).
-Scan the QR code using your authenticator app.
-Enter the two MFA codes generated in the app.
-Click Assign MFA.
-✅ MFA is now enabled!
+## Step 4: Enable Multi-Factor Authentication (MFA)
+1. Go to IAM → Users → [Your IAM User].
+2. Click on the Security credentials tab.
+3. Scroll down to Assigned MFA device and click Manage.
+4. Select Virtual MFA device (recommended) and click Continue.
+5. Open the AWS MFA App (e.g., Google Authenticator, Authy).
+6. Scan the QR code using your authenticator app.
+7. Enter the two MFA codes generated in the app.
+8. Click Assign MFA.
+9. ✅ MFA is now enabled!
 
 
 
