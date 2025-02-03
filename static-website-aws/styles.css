@@ -23,6 +23,7 @@ body {
   background-color: var(--white);
   font-family: "DM Sans", serif;
   min-height: 100vh;
+  scroll-behavior: smooth;
 }
 
 .navbar {
@@ -160,7 +161,7 @@ color: var(--primary-color);
     z-index: -1;
 }
 
-/* Expand Circle on Hover */
+
 .hamburger:hover::before, .close-menu:hover::before {
     transform: scale(1.2);
 }
@@ -226,21 +227,53 @@ color: var(--primary-color);
 }
 
 /* Hero Section */
+/* 
 
+
+/* Hero Section */
 .hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('assets/mountain-8079469_1280.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 50vh;
+    position: relative;
+    width: 100%;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-top: 60px;
-    color: var(--white) ;
+    color: var(--white);
     padding: 0 20px;
+    overflow: hidden; /* Prevents overflow from video */
 }
+
+/* Background Video */
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 90%;
+    object-fit: cover; 
+    transform: translate(-50%, -50%);
+    z-index: -1; 
+}
+
+
+.hero-video {
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Ensure text and buttons remain on top */
+.hero-content, .signup-box {
+    position: relative;
+    z-index: 2;
+}
+
 
 .hero-content h1{
     text-align: center;
@@ -306,7 +339,31 @@ font-size: 1rem;
     background-color: var(--darker-primary);
 }
 
+/* Hero Content Animation */
+.hero-content {
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: fadeSlideIn 1s ease-in-out forwards 0.5s;
+}
 
+/* Sign-Up Box Animation */
+.signup-box {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeSlideIn 1s ease-in-out forwards 1s;
+}
+
+/* Keyframes for Fade + Slide-In */
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 
 /* Hero Section */
@@ -332,3 +389,371 @@ font-size: 1rem;
     }
 }
 
+/* About Section */
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    padding: 80px 10%;
+    background-color: var(--white);
+}
+
+
+.about-container {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    max-width: 1200px;
+    width: 100%;
+}
+
+
+.about-image {
+    flex: 1;
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+
+.about-content {
+    flex: 1;
+}
+
+.about-content h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.about-content p {
+    font-size: 1.2rem;
+    color: var(--primary-text);
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-content p {
+        font-size: 1.1rem;
+    }
+}
+
+
+/* Services Section */
+.services {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.services h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.services-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.service-card {
+    background: rgba(255, 255, 255, 0.1); 
+    padding: 25px;
+    border-radius: 12px;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card i {
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.service-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Hover Effect */
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* Features Section */
+.features {
+    padding: 80px 10%;
+    background-color: var(--light-gray);
+    text-align: center;
+}
+
+.features h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+}
+
+/* Features Container (Grid Layout) */
+.features-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+/* Card Styling */
+.card {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.card p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: var(--primary-text);
+}
+
+/* Card Button */
+.card button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--white);
+    text-transform: uppercase;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.card button:hover {
+    background-color: var(--darker-primary);
+}
+
+/* Hover Animation for Cards */
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .features-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}
+
+
+/* Contact Section */
+.contact {
+    background-color: var(--primary-color); 
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.contact h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.contact p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+/* Form Styling */
+.contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    font-family: "DM Sans";
+}
+
+.form-group textarea {
+    resize: none;
+    height: 120px;
+}
+
+.submit-btn {
+    background-color: white;
+    color: var(--primary-color);
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+
+
+/* Success Pop-up */
+.success-popup {
+    position: absolute; 
+    top: 225%; 
+    left: 50%;
+    transform: translateX(-50%); 
+    background-color: #28a745; 
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out; 
+}
+
+/* Success message fade-in */
+.success-popup.show {
+    opacity: 1;
+}
+
+/* Icon size */
+.success-popup i {
+    font-size: 1.5rem;
+}
+
+
+/* Footer */
+.footer {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Footer Container */
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Footer Text */
+.footer p {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+}
+
+/* Address Section */
+.footer-address p {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: var(--secondary-color);
+}
+
+/* Social Links */
+.social-links {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icon {
+    margin: 0 10px;
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    transition: color 0.3s ease;
+}
+
+.social-icon a {
+    text-decoration: none; 
+    display: inline-block; 
+}
+
+.social-icon i {
+    font-style: normal;
+}
+
+.social-icon:hover {
+    color: var(--white); 
+    transform: scale(1.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer p {
+        font-size: 0.9rem;
+    }
+
+    .footer-address p {
+        font-size: 0.9rem;
+    }
+
+    .social-links {
+        margin-top: 10px;
+    }
+
+    .social-icon {
+        font-size: 1.3rem;
+    }
+}
