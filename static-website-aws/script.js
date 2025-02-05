@@ -48,30 +48,113 @@ window.addEventListener('scroll', () => {
 });
 
 
-document.querySelector(".contact-form").addEventListener("submit", (event) => {
-    event.preventDefault(); // Prevent form submission
+// document.querySelector(".contact-form").addEventListener("submit", (event) => {
+//     event.preventDefault(); // Prevent form submission
 
-    // Create the success message element
-    const successMessage = document.createElement("div");
-    successMessage.classList.add("success-popup"); // Add the success popup class
-    successMessage.innerHTML = `
-        <i class="fa fa-check-circle"></i> Message sent successfully!
-    `;
+//     // Create the success message element
+//     const successMessage = document.createElement("div");
+//     successMessage.classList.add("success-popup"); // Add the success popup class
+//     successMessage.innerHTML = `
+//         <i class="fa fa-check-circle"></i> Message sent successfully!
+//     `;
 
-    // Insert the success message into the contact section
-    const contactSection = document.querySelector("#contact");
-    contactSection.appendChild(successMessage);
+//     // Insert the success message into the contact section
+//     const contactSection = document.querySelector("#contact");
+//     contactSection.appendChild(successMessage);
 
-    // Show the success message by adding the 'show' class
-    setTimeout(() => {
-        successMessage.classList.add("show"); // Fade-in the success message
-    }, 100); // Slight delay to allow for rendering
+//     // Show the success message by adding the 'show' class
+//     setTimeout(() => {
+//         successMessage.classList.add("show"); // Fade-in the success message
+//     }, 100); // Slight delay to allow for rendering
 
-    // Remove success message after 3 seconds
-    setTimeout(() => {
-        successMessage.remove(); // Removes the popup after 3 seconds
-    }, 3000);
+//     // Remove success message after 3 seconds
+//     setTimeout(() => {
+//         successMessage.remove(); // Removes the popup after 3 seconds
+//     }, 3000);
 
-    // Reset the form after successful submission
-    event.target.reset();
+//     // Reset the form after successful submission
+//     event.target.reset();
+// });
+
+
+
+// document.querySelector(".contact-form").addEventListener("submit", async (e) => {
+//     e.preventDefault();
+  
+//     const formData = {
+//       name: document.getElementById("name").value,
+//       email: document.getElementById("email").value,
+//       message: document.getElementById("message").value,
+//     };
+  
+//     const response = await fetch("https://d8csi9nxy0.execute-api.us-west-1.amazonaws.com/dev", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify(formData),
+//     });
+  
+//     const data = await response.json();
+//     alert(data.message);
+//   });
+  
+
+document.querySelector(".contact-form").addEventListener("submit", async (e) => {
+    e.preventDefault(); // Prevent default form submission
+
+    const formData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value,
+    };
+
+    try {
+        const response = await fetch("https://16ejwbl257.execute-api.us-west-1.amazonaws.com/prod/send-email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+        });
+
+        const data = await response.json();
+        console.log(data); 
+
+        if (response.ok && data.message && data.message === "Email sent successfully!") {
+            showSuccessMessage("Message sent successfully!");
+            e.target.reset();
+        } else {
+            const errorMsg = data.error || "Failed to send message. Please try again.";
+            showErrorMessage(errorMsg);
+        }
+        
+    } catch (error) {
+        console.error("Error:", error);
+        showErrorMessage("An error occurred. Check your connection.");
+    }
 });
+
+// Function to show a success message popup
+function showSuccessMessage(message) {
+    showPopupMessage(message, "success-popup", "fa-check-circle");
+}
+
+// Function to show an error message popup
+function showErrorMessage(message) {
+    showPopupMessage(message, "error-popup", "fa-exclamation-circle");
+}
+
+// Generic function to create and display popups
+function showPopupMessage(message, className, iconClass) {
+    const popup = document.createElement("div");
+    popup.classList.add(className);
+    popup.innerHTML = `<i class="fa ${iconClass}"></i> ${message}`;
+
+    const contactSection = document.querySelector("#contact");
+    contactSection.appendChild(popup);
+
+    setTimeout(() => {
+        popup.classList.add("show");
+    }, 100);
+
+    setTimeout(() => {
+        popup.remove();
+    }, 3000);
+}

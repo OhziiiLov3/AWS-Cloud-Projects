@@ -1,0 +1,17 @@
+{
+  "name": "static-website-aws",
+  "version": "1.0.0",
+  "description": "### Host a Website on Amazon S3   **By Keith L. Baskerville Jr.**",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-ses": "^3.741.0",
+    "nodemailer": "^6.10.0",
+    "pg": "^8.13.1"
+  }
+}
