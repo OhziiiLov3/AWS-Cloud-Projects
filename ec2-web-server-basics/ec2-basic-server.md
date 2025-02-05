@@ -70,3 +70,5 @@ systemctl status apache2
 ```
 6. Open a browser and enter http://your-public-ip – You should see the default Apache page.
 
+🎉 Congrats! Your web server is live.
+Now you can host websites and applications on your EC2 instance!
