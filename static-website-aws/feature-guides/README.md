@@ -1,5 +1,7 @@
 ### Additional Features to AWS Cloud Project - Hosting a static website
-## Next Feature - Add a Serverless Backend with AWS Lambda & API Gateway
+<img src="https://github.com/user-attachments/assets/2eb4b936-9573-4e20-815e-0638b1ebbf01" width="1000">
+
+## Next Feature - Add a Serverless Backend with AWS Lambda, API Gateway, & Amazon SES
 - Convert Contact Form to Use AWS Lambda + API Gateway + SES
 - When a user submits the form, trigger a Lambda function.
 - Use Amazon SES to send an email to your inbox.
