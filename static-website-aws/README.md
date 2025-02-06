@@ -89,9 +89,59 @@ To resolve the connection error, I had to make the website files publicly access
 
 ### Solution:  
 In the **Actions** dropdown, I selected **"Make public using ACL"**.  
+[Check out it](http://drift-website-v1.s3-website-us-west-1.amazonaws.com/)
 
 
-[![DEMO](https://github.com/user-attachments/assets/74ec811c-2965-4c36-a254-d3cf0df0e264)](https://your-video-link.com)
+![Image](https://github.com/user-attachments/assets/10e7ae98-bf20-40cd-b03f-a783f470b536)
+
+# Additional Feautres 
+### Hosting a Website on Amazon S3 with CloudFront
+## Overview
+This documentation outlines the steps for hosting a static website on Amazon S3 and integrating it with CloudFront for optimized performance and security.
+
+## Amazon S3 Static Website Hosting
+### Setup
+1. **Create an S3 Bucket(go to the s3 bucket created above)**
+   - Enable **Static Website Hosting** in the **Properties** tab.
+   - Note the **Bucket Website Endpoint**.
+
+2. **Update Bucket Permissions**
+   - Add a **Bucket Policy** to allow public access:
+   ```json
+   {
+     "Version": "2012-10-17",
+     "Statement": [
+       {
+         "Effect": "Allow",
+         "Principal": "*",
+         "Action": "s3:GetObject",
+         "Resource": "arn:aws:s3:::your-bucket-name/*"
+       }
+     ]
+   }
+   ```
+## CloudFront Integration
+### Setup CloudFront Distribution
+1. Create a CloudFront Distribution
+- Set Origin Domain Name to your S3 bucket (not the website endpoint).
+- Enable Origin Access Control (OAC) for security.
+- Allow GET, HEAD, OPTIONS HTTP methods.
+- Redirect HTTP to HTTPS.
+
+2. Configure Caching & Custom Domain
+
+- Use Amazon Certificate Manager (ACM) for SSL if using a custom domain.
+- Add Alternate Domain Name (CNAME) if applicable.
+### Testing
+- Retrieve and test the CloudFront URL.
+- [Check it out](https://di2xyy7cv62g.cloudfront.net/)
+- Ensure accessibility and performance optimizations.
+For further configurations I like to add Route 53 custom domains or CloudFront caching settings.
+
+
+
+
+
 
 
 
